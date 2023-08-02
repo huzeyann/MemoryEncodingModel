@@ -1,13 +1,13 @@
 ## Memory Encoding Model <br><sub>Official PyTorch Implementation</sub>
 
-### [Paper](http://arxiv.org/abs/) | [Project Page](https://huzeyann.githubpages.io/mem) 
+### [Paper](http://arxiv.org/abs/) | [Project Page](https://huzeyann.github.io/mem) 
 ![theory](images/teaser.png)
 
 This repo contains PyTorch model definitions, data preparing and training code, all the way from scratch to our Algonauts 2023 visual brain competition winning  
-Memory Encoding Model (Mem). You can find slides and online video on our [project page](https://huzeyann.githubpages.io/mem).
+Memory Encoding Model (Mem). You can find slides and online video on our [project page](https://huzeyann.github.io/mem).
 
-> [**Memory Encoding Model**](https://huzeyann.githubpages.io/mem)<br>
-> [Huzheng Yang](https://huzeyann.githubpages.io/), [James Gee*](https://www.med.upenn.edu/apps/faculty/index.php/g5455356/p10656), [Jianbo Shi*](https://www.cis.upenn.edu/~jshi/)
+> [**Memory Encoding Model**](https://huzeyann.github.io/mem)<br>
+> [Huzheng Yang](https://huzeyann.github.io/), [James Gee*](https://www.med.upenn.edu/apps/faculty/index.php/g5455356/p10656), [Jianbo Shi*](https://www.cis.upenn.edu/~jshi/)
 > <br>University of Pennsylvaniay<br>
 
 We explore a new class of brain encoding model by adding memory-related information as input. We found the non-visual brain is largely predictable using previously seen images. Our Memory Encoding Model (**Mem**) won the Algonauts 2023 visual brain competition even without model ensemble (single model score **66.8**, ensemble score **70.8**). Our ensemble model without memory input (**61.4**) can also stand a 3rd place.
