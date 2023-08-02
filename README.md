@@ -1,4 +1,4 @@
-## Memory Encoding Model (Mem)<br><sub>Official PyTorch Implementation</sub>
+## Memory Encoding Model <br><sub>Official PyTorch Implementation</sub>
 
 ### [Paper](http://arxiv.org/abs/) | [Project Page](https://huzeyann.githubpages.io/mem) 
 ![theory](images/teaser.png)
