@@ -135,7 +135,7 @@ tensorboard --logdir /nfscc/alg23/toy_ablation
 
 ## To reproduce the Algonauts 2023 competition
 
-First checkout the scripts in [scripts_light](src/scripts_light). `xvba` train a full Mem model for all subjects, using the naive recipe. `xvbaa` take the trained model and save predictions. Predictions can be feed to `xvbab` to create submissions.
+First checkout the scripts in [scripts_light](src/scripts_light). `xvba` train a full Mem model for all subjects, it's called 'nerfed' because TopyNeck is not fixed and this negatively impact ModelSoup performance. `xvbaa` take the trained model and save predictions. Predictions can be feed to `xvbab` to create submissions.
 
 To reproduce a 63±1  score model, 12 hours
 
