@@ -28,7 +28,7 @@ This repository contains:
 First, download and set up the repo:
 
 ```bash
-git clone https://github.com/huzeyann/MemoryEncodingModel.git
+git clone https://github.com/huzeyann/Mem.git
 cd MemoryEncodingModel
 ```
 
