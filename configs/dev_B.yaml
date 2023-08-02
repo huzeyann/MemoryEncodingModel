@@ -1,0 +1,174 @@
+ANALYSIS:
+  DRAW_NEURON_LOCATION: false
+  SAVE_NEURON_LOCATION: false
+CHECKPOINT_DIR: /data/ckpt/
+DATAMODULE:
+  BATCH_SIZE: 32
+  FEATURE_EXTRACTOR_MODE: false
+  NUM_WORKERS: 8
+  PIN_MEMORY: true
+DATASET:
+  CACHE_DIR: /data/cache
+  DARK_POSTFIX: ''
+  FILTER_BY_SESSION:
+  - -1
+  FMRI_SPACE: fsaverage
+  IMAGE_RESOLUTION:
+  - 224
+  - 224
+  N_PREV_FRAMES: 32
+  ROIS:
+  - all
+  ROOT: /data/ALG23
+  SUBJECT_LIST:
+  - subj01
+DESCRIPTION: Default config
+EXPERIMENTAL:
+  ANOTHER_SPLIT: false
+  BEHV_ONLY: false
+  BEHV_SELECTION:
+  - -1
+  BLANK_IMAGE: false
+  NO_SPLIT: false
+  SHUFFLE_IMAGES: false
+  SHUFFLE_VAL: true
+  STRAIGHT_FORWARD: false
+  STRAIGHT_FORWARD_BUT_KEEP_BACKBONE_GRAD: false
+  T_IMAGE: 0
+  USE_DEV_MODEL: true
+  USE_PREV_FRAME: true
+LOSS:
+  NAME: SmoothL1Loss
+  SMOOTH_L1_BETA: 0.01
+  SYNC:
+    EMA_BETA: 0.9
+    EMA_BIAS_CORRECTION: false
+    EMA_KEY: running_grad
+    EXP_SCALE: 10.0
+    EXP_SHIFT: 0.0
+    LOG_SHIFT: 10.0
+    SKIP_EPOCHS: 10
+    STAGE: VAL
+    UPDATE_RULE: raw
+    USE: false
+MODEL:
+  BACKBONE:
+    ADAPTIVE_LN:
+      SCALE: 0.5
+    CACHE_DIR: /data/cache
+    CLS_DIMS:
+    - 1536
+    - 1536
+    - 1536
+    - 768
+    FEATURE_DIMS:
+    - 768
+    - 768
+    - 768
+    - 768
+    LAYERS:
+    - 2
+    - 5
+    - 8
+    - 11
+    LORA:
+      RANK: 4
+      SCALE: 0.2
+    NAME: dinov2_vit_b
+  BACKBONE_SMALL:
+    ADAPTIVE_LN:
+      SCALE: 0.5
+    CLS_DIMS:
+    - 384
+    LAYERS:
+    - 11
+    LORA:
+      RANK: 4
+      SCALE: 0.2
+    MERGE_WIDTH: 32
+    NAME: dinov2_vit_s
+    T_DIM: 128
+    WIDTH: 32
+  BOTTLENECK:
+    OUT_DIM: 64
+    RANK: -1
+  COND:
+    DIM: 256
+    DROPOUT: 0.2
+    IN_DIM: 35
+    PASSTHROUGH_DIM: 16
+    USE: true
+  CONV_HEAD:
+    DEPTHS:
+    - 3
+    - 3
+    - 3
+    - 3
+    KERNEL_SIZES:
+    - 5
+    - 5
+    - 5
+    - 5
+    MAX_DIM: 64
+    SIMPLE: true
+    WIDTH: 64
+  COORDS_MLP:
+    DEPTH: 3
+    LOG: false
+    WIDTH: 32
+  LAYER_SELECTOR: {}
+  MAX_TRAIN_VOXELS: 25600
+  PREV_FEAT:
+    DIM: 1024
+  RETINA_MAPPER:
+    CONSTANT_SIGMA: 0.01
+  VOXEL_OUTS:
+    SHARED:
+      MLP:
+        DEPTH: 3
+        WIDTH: 1024
+      USE: false
+MODEL_SOUP:
+  GREEDY_TARGET: heldout
+  RECIPE: greedy
+  USE: true
+OPTIMIZER:
+  LR: 0.001
+  NAME: AdamW
+  SCHEDULER:
+    CYCLE_DECAY: 0.5
+    CYCLE_LIMIT: 3
+    K_DECAY: 1.5
+    LR_MIN: 0.001
+    LR_MIN_WARMUP: 0.0001
+    T_INITIAL: 1
+    T_MULT: 1.0
+    WARMUP_T: 1
+  WEIGHT_DECAY: 0.0003
+POSITION_ENCODING:
+  FEATURES: 32
+  IN_DIM: 3
+  MAX_STEPS: 1000
+  PERIODS: 10000
+REGULARIZER:
+  LAYER: 3.0e-05
+RESULTS_DIR: /nfscc/alg23/ray_results/
+TRAINER:
+  ACCUMULATE_GRAD_BATCHES: 1
+  CALLBACKS:
+    CHECKPOINT:
+      LOAD_BEST_ON_END: false
+      LOAD_BEST_ON_VAL: false
+      REMOVE: true
+      SAVE_TOP_K: 10
+    EARLY_STOP:
+      PATIENCE: 10
+  DDP: false
+  GRADIENT_CLIP_VAL: 0.5
+  LIMIT_TRAIN_BATCHES: 1.0
+  LIMIT_VAL_BATCHES: 1.0
+  LOG_TRAIN_N_STEPS: 100
+  MAX_EPOCHS: 1000
+  MAX_STEPS: -1
+  PRECISION: 16
+  VAL_CHECK_INTERVAL: 1.0
