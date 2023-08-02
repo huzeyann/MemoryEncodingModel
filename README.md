@@ -12,8 +12,6 @@ Memory Encoding Model (Mem). You can find slides and online video on our [projec
 
 We explore a new class of brain encoding model by adding memory-related information as input. We found the non-visual brain is largely predictable using previously seen images. Our Memory Encoding Model (**Mem**) won the Algonauts 2023 visual brain competition even without model ensemble (single model score **66.8**, ensemble score **70.8**). Our ensemble model without memory input (**61.4**) can also stand a 3rd place.
 
-> single model checkpoint will be released in the future
-
 This repository contains:
 
 * 😎 simple PyTorch [implementation](src/models.py) of **Mem**
@@ -186,6 +184,11 @@ First optimize and freeze a topyneck `xdcaa`, then train with `xdcac`, `xdea`. `
 
 ![mem](images/mem.png)
 ![noise_ceiling](images/noiseceiling.png)
+
+## TODO
+
+[ ] single model checkpoint release
+
 
 ## BibTeX
 
