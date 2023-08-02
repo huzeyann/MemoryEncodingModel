@@ -78,7 +78,7 @@ docker exec -it sspy zsh
 
 ## Data Preparation
 
-Part of the original [NSD](https://cvnlab.slite.page/p/CT9Fwl4_hc/NSD-Data-Manual) repository, alongside of the full [Algonauts 2023](http://algonauts.csail.mit.edu/) files, is necessary to run the experiments. The following lines download from NSD aws bucket. There's many version of fMRI preparation, getting all of them take terabytes of space, to reproduce the Algonauts 2023 challenge only requires `fsaverage` space `beta3`.
+Part of the original [NSD](https://cvnlab.slite.page/p/CT9Fwl4_hc/NSD-Data-Manual) repository, alongside of the full [Algonauts 2023](http://algonauts.csail.mit.edu/) files, is necessary to run the experiments. You need 1) require access and 2) have aws cli setup.  The following lines download from NSD aws bucket. There's many version of fMRI preparation, getting all of them take terabytes of space, to reproduce the Algonauts 2023 challenge only requires `fsaverage` space `beta3`.
 
 ```bash
 aws s3 sync --exclude "*" --include "nsddata/experiments/nsd/nsd_expdesign.mat" s3://natural-scenes-dataset /data/huze/natural-scenes-dataset
