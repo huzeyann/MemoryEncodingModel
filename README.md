@@ -187,7 +187,7 @@ First optimize and freeze a topyneck `xdcaa`, then train with `xdcac`, `xdea`. `
 
 ## TODO
 
-[ ] single model checkpoint release
+- [ ] single model checkpoint release
 
 
 ## BibTeX
