@@ -60,14 +60,14 @@ check out the install documentation [docker](https://docs.docker.com/engine/inst
 ---
 
 
-This is how I setup the environment, `/home/huze/nfscc` is an NFS mounted directory, you can replace it with any local path. `/home/huze/workspace` is path to `src/`. 
+This is how I setup the environment, `/home/huze/nfscc` is an NFS mounted directory, you can replace it with any local path.
 
 ```bash
 docker run -d \
   --shm-size 64G \
   --gpus all \
   -v /home/huze/nfscc:/nfscc \
-  -v /home/huze/workspace:/workspace \
+  -v /home/huze/Mem/src:/workspace \
   -v /home/huze/data:/data \
   -v /home/huze/data/.cache:/root/.cache \
   --name sspy
