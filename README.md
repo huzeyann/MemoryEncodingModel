@@ -60,7 +60,7 @@ check out the install documentation [docker](https://docs.docker.com/engine/inst
 ---
 
 
-This is how I setup the environment, `/home/huze/nfscc` is an NFS mounted directory, you can replace it with any local path. `/home/huze/workspace` is this repository. 
+This is how I setup the environment, `/home/huze/nfscc` is an NFS mounted directory, you can replace it with any local path. `/home/huze/workspace` is path to `src/`. 
 
 ```bash
 docker run -d \
