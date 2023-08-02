@@ -29,7 +29,7 @@ First, download and set up the repo:
 
 ```bash
 git clone https://github.com/huzeyann/Mem.git
-cd MemoryEncodingModel
+cd Mem
 ```
 
 We provide an [`requirements.txt`](requirements.txt) file, it contains everything but `torch`. Install `torch` with conda should make it work smoothly if stars align.
