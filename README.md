@@ -161,8 +161,8 @@ To reproduce our best random-ROI ensemble recipe (70.8), it take hours to read m
 
 1. `xvaa` to `xvab` pre-train a RetinaMapper and LayerSelector, keep it freeze on later steps, this boosts training speed 2x, also it's necessary to avoid collapsing during ModelSoup.
 2. `xvba` to `xvbb` train a naive recipe whole brain model, use the model weight to clustering and make model-defined ROIs, this step can be skipped, just remove this atlas from `xvbc`.
-3. `xvbc` is the 1000 GPU hour heavy lift. It run a grid of (9*12)+3=111 models. It also need a total of 1TB storage to store checkpoints. Note that: All of my scripts can run in a distributed setting, the deployment requires `/nfscc` to be a common NFS mounted directory on every node. Nodes communicate through file locks ([cluster_utils.py](src/cluster_utils.py)). You need to run the same script on every node `python xxx.py` or use [do_start_jobs.sh](src/do_start_jobs.sh) to automatically deploy the jobs.
-4. `xvda` load stored checkpoints, each model has top10 checkpoints, and make them ModelSoup. If checkpoints are stored in distributed machines, [sync_ckpt.sh](sync_ckpt.sh) can copy them to one central node.
+3. `xvbc` is the 1000 GPU hour heavy lift. It run a grid of (9*12)+3=111 models. It also need a total of 1TB storage to store checkpoints. Note that: All of my scripts can run in a distributed setting, the deployment requires `/nfscc` to be a common NFS mounted directory on every node. Nodes communicate through file locks ([cluster_utils.py](src/cluster_utils.py)). You need to run the same script on every node `python xxx.py` or use `do_start_jobs.sh`` to automatically deploy the jobs.
+4. `xvda` load stored checkpoints, each model has top10 checkpoints, and make them ModelSoup. If checkpoints are stored in distributed machines, `sync_ckpt.sh` can copy them to one central node.
 5. `xvdb` is the grand finale🎆. It load models from different atlas configuration and save the averaged prediction. The saved prediction can be made into submission by `xvbab`.
 
 ## To reproduce memory replay
