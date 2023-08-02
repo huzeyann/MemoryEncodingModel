@@ -137,7 +137,7 @@ tensorboard --logdir /nfscc/alg23/toy_ablation
 
 First checkout the scripts in [scripts_light](scripts_light). `xvba` train a full Mem model for all subjects, using the naive recipe. `xvbaa` take the trained model and save predictions. Predictions can be feed to `xvbab` to create submissions.
 
-To reproduce a 63±1  score model, it take 12 hours
+To reproduce a 63±1  score model, 12 hours
 
 ```bash
 python scripts_light/xvba_nerfed_soup.py -pv
@@ -145,7 +145,7 @@ python scripts_light/xvbaa_darkpred.py --stage predict
 python scripts_light/xvbab_submission.py --save_dir /submission/toy1
 ```
 
-To reproduce a 66±1 score model, it takes additional 24 hours to self-distill the model trained above. Our distillation pipeline is to mimic the final output of a freeze model.
+To reproduce a 66±1 score model, +24 hours to distill the model trained above. Our distillation pipeline is to mimic the final output of a freeze model.
 
 ```bash
 python scripts_light/xvbaa_darkpred.py --stage train
