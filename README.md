@@ -143,7 +143,7 @@ python scripts_light/xvbaa_darkpred.py --stage predict
 python scripts_light/xvbab_submission.py --save_dir /submission/toy1
 ```
 
-> it's called 'light' and 'nerfed' because TopyNeck is not fixed and this negatively impact ModelSoup performance, you can use `xvaa, xvab` in [scripts_heavy](src/scripts_heavy) to pre-optimize an TopyNeck and use the `xvba` in there.
+> it's called 'light' and 'nerfed' because TopyNeck is not fixed and this may negatively impact ModelSoup performance, you can use the un-nerfed script in [scripts_heavy](src/scripts_heavy) instead.
 
 To reproduce a 66±1 score model, +24 hours to distill the model trained above. Our distillation pipeline is to mimic the final output of a freeze model.
 
