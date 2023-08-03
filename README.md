@@ -1,18 +1,16 @@
 ## Memory Encoding Model <br><sub>Official PyTorch Implementation</sub>
 
-### [Paper](http://arxiv.org/abs/) | [Project Page](https://huzeyann.github.io/mem) 
+### [Paper](http://arxiv.org/abs/2308.01175) | [Project Page](https://huzeyann.github.io/mem) 
 ![theory](images/teaser.png)
 
 This repo contains PyTorch model definitions, data preparing and training code, all the way from scratch to our Algonauts 2023 visual brain competition winning  
-Memory Encoding Model (Mem). You can find slides and online video on our [project page](https://huzeyann.github.io/mem).
+Memory Encoding Model (Mem). You can find slides and online video (soon!) on our [project page](https://huzeyann.github.io/mem).
 
 > [**Memory Encoding Model**](https://huzeyann.github.io/mem)<br>
 > [Huzheng Yang](https://huzeyann.github.io/), [James Gee*](https://www.med.upenn.edu/apps/faculty/index.php/g5455356/p10656), [Jianbo Shi*](https://www.cis.upenn.edu/~jshi/)
 > <br>University of Pennsylvaniay<br>
 
 We explore a new class of brain encoding model by adding memory-related information as input. We found the non-visual brain is largely predictable using previously seen images. Our Memory Encoding Model (**Mem**) won the Algonauts 2023 visual brain competition even without model ensemble (single model score **66.8**, ensemble score **70.8**). Our ensemble model without memory input (**61.4**) can also stand a 3rd place.
-
-> single model checkpoint will be released in the future
 
 This repository contains:
 
@@ -77,14 +75,14 @@ check out the install documentation [docker](https://docs.docker.com/engine/inst
 ---
 
 
-This is how I setup the environment, `/home/huze/nfscc` is an NFS mounted directory, you can replace it with any local path. `/home/huze/workspace` is path to `src/`. 
+This is how I setup the environment, `/home/huze/nfscc` is an NFS mounted directory, you can replace it with any local path.
 
 ```bash
 docker run -d \
   --shm-size 64G \
   --gpus all \
   -v /home/huze/nfscc:/nfscc \
-  -v /home/huze/workspace:/workspace \
+  -v /home/huze/Mem/src:/workspace \
   -v /home/huze/data:/data \
   -v /home/huze/data/.cache:/root/.cache \
   --name sspy
@@ -95,7 +93,7 @@ docker exec -it sspy zsh
 
 ## Data Preparation
 
-Part of the original [NSD](https://cvnlab.slite.page/p/CT9Fwl4_hc/NSD-Data-Manual) repository, alongside of the full [Algonauts 2023](http://algonauts.csail.mit.edu/) files, is necessary to run the experiments. The following lines download from NSD aws bucket. There's many version of fMRI preparation, getting all of them take terabytes of space, to reproduce the Algonauts 2023 challenge only requires `fsaverage` space `beta3`.
+Part of the original [NSD](https://cvnlab.slite.page/p/CT9Fwl4_hc/NSD-Data-Manual) repository, alongside of the full [Algonauts 2023](http://algonauts.csail.mit.edu/) files, is necessary to run the experiments. You need 1) require access and 2) have aws cli setup.  The following lines download from NSD aws bucket. There's many version of fMRI preparation, getting all of them take terabytes of space, to reproduce the Algonauts 2023 challenge only requires `fsaverage` space `beta3`.
 
 ```bash
 aws s3 sync --exclude "*" --include "nsddata/experiments/nsd/nsd_expdesign.mat" s3://natural-scenes-dataset /data/huze/natural-scenes-dataset
@@ -162,7 +160,7 @@ python scripts_light/xvbaa_darkpred.py --stage predict
 python scripts_light/xvbab_submission.py --save_dir /submission/toy1
 ```
 
-> it's called 'light' and 'nerfed' because TopyNeck is not fixed and this negatively impact ModelSoup performance, you can use `xvaa, xvab` in [scripts_heavy](src/scripts_heavy) to pre-optimize an TopyNeck and use the `xvba` in there.
+> it's called 'light' and 'nerfed' because TopyNeck is not fixed and this may negatively impact ModelSoup performance, you can use the un-nerfed script in [scripts_heavy](src/scripts_heavy) instead.
 
 To reproduce a 66±1 score model, +24 hours to distill the model trained above. Our distillation pipeline is to mimic the final output of a freeze model.
 
@@ -204,6 +202,11 @@ First optimize and freeze a topyneck `xdcaa`, then train with `xdcac`, `xdea`. `
 ![mem](images/mem.png)
 ![noise_ceiling](images/noiseceiling.png)
 
+## TODO
+
+- [ ] single model checkpoint release
+
+
 ## BibTeX
 
 ```bibtex
@@ -211,7 +214,7 @@ First optimize and freeze a topyneck `xdcaa`, then train with `xdcac`, `xdea`. `
   title={Memory Encoding Model},
   author={Yang, Huzheng and Gee, James and Shi, Jianbo},
   year={2023},
-  journal={arXiv preprint arXiv:PLACEHOLDER},
+  journal={arXiv preprint arXiv:2308.01175},
 }
 ```
 
