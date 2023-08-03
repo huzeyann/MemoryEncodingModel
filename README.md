@@ -23,6 +23,23 @@ This repository contains:
 * 😇 [heavy scripts](src/scripts_heavy) to burn GPU for 1000h to achieve 70 score
 * 📄 [scripts](src/scripts_paper) to reproduce periodic delayed response, whole brain model
 
+---
+| **Method** | Ensemble | **Input**  |               |       |       | **Score**   |         |            |
+| :--------- | :------- | :--------- | :------------ | :---- | :---- | :---------- | :------ | :--------- |
+|            |          | **Images** | **Condition** |       |       | **Private** |         | **Public** |
+| |          | **Frame**  | **M**         | **B** | **T** | **r**       | **r^2** | **score**  |
+||
+| Full Mem   | ✅      | T=-32:0    | ✅           | ✅   | ✅   | 0\.416      | 0\.195  | **70\.85** |
+| Full Mem   |          | T=-32:0    | ✅           | ✅   | ✅   | 0\.398      | 0\.180  | <u>66\.80</u> |
+| w/o time   |          | T=-32:0    | ✅           | ✅   |       | 0\.400      | 0\.182  | 66\.09     |
+| w/o answer |          | T=-32:0    | ✅           |       | ✅   | 0\.392      | 0\.176  | 64\.92     |
+| w/o memC   |          | T=-32:0    |               | ✅   | ✅   | 0\.394      | 0\.177  | 67\.02     |
+| w/o memI   |          | T=0        | ✅           | ✅   | ✅   | 0\.363      | 0\.155  | 62\.65     |
+| w/o memIC  |          | T=0        |               | ✅   | ✅   | 0\.363      | 0\.156  | 62\.24     |
+| Baseline   |          | T=0        |               |       |       | 0\.332      | 0\.135  | <u>58\.82</u> |
+| Baseline   | ✅      | T=0        |               |       |       | 0\.341      | 0\.141  | **61\.39** |
+---
+
 ## Software Setup
 
 First, download and set up the repo:
