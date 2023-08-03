@@ -1,10 +1,10 @@
 ## Memory Encoding Model <br><sub>Official PyTorch Implementation</sub>
 
-### [Paper](http://arxiv.org/abs/) | [Project Page](https://huzeyann.github.io/mem) 
+### [Paper](http://arxiv.org/abs/2308.01175) | [Project Page](https://huzeyann.github.io/mem) 
 ![theory](images/teaser.png)
 
 This repo contains PyTorch model definitions, data preparing and training code, all the way from scratch to our Algonauts 2023 visual brain competition winning  
-Memory Encoding Model (Mem). You can find slides and online video on our [project page](https://huzeyann.github.io/mem).
+Memory Encoding Model (Mem). You can find slides and online video (soon!) on our [project page](https://huzeyann.github.io/mem).
 
 > [**Memory Encoding Model**](https://huzeyann.github.io/mem)<br>
 > [Huzheng Yang](https://huzeyann.github.io/), [James Gee*](https://www.med.upenn.edu/apps/faculty/index.php/g5455356/p10656), [Jianbo Shi*](https://www.cis.upenn.edu/~jshi/)
@@ -197,7 +197,7 @@ First optimize and freeze a topyneck `xdcaa`, then train with `xdcac`, `xdea`. `
   title={Memory Encoding Model},
   author={Yang, Huzheng and Gee, James and Shi, Jianbo},
   year={2023},
-  journal={arXiv preprint arXiv:PLACEHOLDER},
+  journal={arXiv preprint arXiv:2308.01175},
 }
 ```
 
