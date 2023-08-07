@@ -12,6 +12,8 @@ Memory Encoding Model (Mem). You can find slides and online video (soon!) on our
 
 We explore a new class of brain encoding model by adding memory-related information as input. We found the non-visual brain is largely predictable using previously seen images. Our Memory Encoding Model (**Mem**) won the Algonauts 2023 visual brain competition even without model ensemble (single model score **66.8**, ensemble score **70.8**). Our ensemble model without memory input (**61.4**) can also stand a 3rd place.
 
+Challenge [website](algonauts.csail.mit.edu/), [LeaderBoard](https://codalab.lisn.upsaclay.fr/competitions/9304#results)
+
 This repository contains:
 
 * 😎 simple PyTorch [implementation](src/models.py) of **Mem**
