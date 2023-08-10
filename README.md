@@ -19,7 +19,7 @@ This repository contains:
 * 😎 simple PyTorch [implementation](src/models.py) of **Mem**
 * 🤔 complex pipeline to [prepare data](src/preparedata_nsd.py) from the original NSD repository
 * 🎸 welcoming PyTorch Lightning [training script](src/plmodels.py)
-* 🥁 [scripts](src/scripts_simple) to achieve 63 and 66 score in 12 and 24h GPU time
+* 🥁 [scripts](src/scripts_light) to achieve 63 and 66 score in 12 and 24h GPU time
 * 😇 [heavy scripts](src/scripts_heavy) to burn GPU for 1000h to achieve 70 score
 * 📄 [scripts](src/scripts_paper) to reproduce periodic delayed response, whole brain model
 
