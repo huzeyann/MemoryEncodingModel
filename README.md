@@ -16,12 +16,12 @@ Challenge [website](algonauts.csail.mit.edu/). Official [LeaderBoard](https://co
 
 This repository contains:
 
-* 😎 simple PyTorch [implementation](src/models.py) of **Mem**
-* 🤔 complex pipeline to [prepare data](src/preparedata_nsd.py) from the original NSD repository
-* 🎸 welcoming PyTorch Lightning [training script](src/plmodels.py)
-* 🥁 [scripts](src/scripts_light) to achieve 63 and 66 score in 12 and 24h GPU time
-* 😇 [heavy scripts](src/scripts_heavy) to burn GPU for 1000h to achieve 70 score
-* 📄 [scripts](src/scripts_paper) to reproduce periodic delayed response, whole brain model
+* 😎 simple PyTorch [implementation](mem/models.py) of **Mem**
+* 🤔 complex pipeline to [prepare data](mem/preparedata_nsd.py) from the original NSD repository
+* 🎸 welcoming PyTorch Lightning [training script](mem/plmodels.py)
+* 🥁 [scripts](mem/scripts_light) to achieve 63 and 66 score in 12 and 24h GPU time
+* 😇 [heavy scripts](mem/scripts_heavy) to burn GPU for 1000h to achieve 70 score
+* 📄 [scripts](mem/scripts_paper) to reproduce periodic delayed response, whole brain model
 
 ---
 |                 |                        | **Input** |  |  |  | **Score** |  |  |
@@ -45,7 +45,7 @@ First, download and set up the repo:
 
 ```bash
 git clone https://github.com/huzeyann/Mem.git
-cd Mem
+cd Mem/mem
 ```
 
 We provide an [`requirements.txt`](requirements.txt) file, it contains everything but `torch`. Install `torch` with conda should make it work smoothly if stars align.
@@ -113,7 +113,7 @@ aws s3 sync --exclude "*" --include "nsddata_betas/ppdata/subj0*/func1mm/betas_f
 aws s3 sync --exclude "*" --include "nsddata_betas/ppdata/subj*/func1mm/betas_fithrf/betas_session*nii.gz" s3://natural-scenes-dataset /data/huze/natural-scenes-dataset
 ```
 
-After downloading both NSD and Algonauts 2023 files, use this script to make it structured for the [Dataset](src/datasets.py) class. Notably [`preparedata_nsd.py`](src/preparedata_nsd.py) does: 1. extract conditioning vector from experimental design and behavior response. 2. save index about memory images. 3. threshold voxels by noise ceiling. 
+After downloading both NSD and Algonauts 2023 files, use this script to make it structured for the [Dataset](mem/datasets.py) class. Notably [`preparedata_nsd.py`](mem/preparedata_nsd.py) does: 1. extract conditioning vector from experimental design and behavior response. 2. save index about memory images. 3. threshold voxels by noise ceiling. 
 
 ```bash
 python preparedata_nsd.py --help
@@ -122,7 +122,7 @@ python preparedata_nsd.py --nsd_dir /data/nature-scenes-dataset --alg_dir /data/
 python prepare_cache.py --data_dir /data/ALG23/images --save_dir /data/ALG23/feats
 ```
 
-[`prepare_cache.py`](src/prepare_cache.py) forward image through a pretrained ViT and save CLS token, this is critical to reduce computation for memory images.
+[`prepare_cache.py`](mem/prepare_cache.py) forward image through a pretrained ViT and save CLS token, this is critical to reduce computation for memory images.
 
 ![theory](images/model.png)
 
@@ -136,13 +136,13 @@ python plmodels.py
 tensorboard --logdir tb_logs
 ```
 
-You can turn on and off inputs (memory, behavior), modules (RetinaMapper, LayerSelector), in the [configuration file](src/configs/dev.yaml)
+You can turn on and off inputs (memory, behavior), modules (RetinaMapper, LayerSelector), in the [configuration file](mem/configs/dev.yaml)
 
 ```bash
 python plmodels.py --cfg_path /workspace/configs/dev.yaml
 ```
 
-The toy [scripts_light/toy_ablation.py](src/scripts_light/toy_ablation.py) do a grid search for configurations. The jobs are automatically managed by `ray.tune`
+The toy [scripts_light/toy_ablation.py](mem/scripts_light/toy_ablation.py) do a grid search for configurations. The jobs are automatically managed by `ray.tune`
 
 ```bash
 python scripts_light/toy_ablation.py -pv
@@ -151,7 +151,7 @@ tensorboard --logdir /nfscc/alg23/toy_ablation
 
 ## To reproduce the Algonauts 2023 competition
 
-First checkout the scripts in [scripts_light](src/scripts_light). `xvba` train a full Mem model for all subjects. `xvbaa` take the trained model and save predictions. Predictions can be feed to `xvbab` to create submissions.
+First checkout the scripts in [scripts_light](mem/scripts_light). `xvba` train a full Mem model for all subjects. `xvbaa` take the trained model and save predictions. Predictions can be feed to `xvbab` to create submissions.
 
 To reproduce a 63±1  score model, 12 hours
 
@@ -161,7 +161,7 @@ python scripts_light/xvbaa_darkpred.py --stage predict
 python scripts_light/xvbab_submission.py --save_dir /submission/toy1
 ```
 
-> it's called 'light' and 'nerfed' because TopyNeck is not fixed and this may negatively impact ModelSoup performance, you can use the un-nerfed script in [scripts_heavy](src/scripts_heavy) instead.
+> it's called 'light' and 'nerfed' because TopyNeck is not fixed and this may negatively impact ModelSoup performance, you can use the un-nerfed script in [scripts_heavy](mem/scripts_heavy) instead.
 
 To reproduce a 66±1 score model, +24 hours to distill the model trained above. Our distillation pipeline is to mimic the final output of a freeze model.
 
@@ -173,11 +173,11 @@ python scripts_light/xvbab_submission.py --dark_name xvbaa_distill --save_dir /s
 
 ```
 
-To reproduce our best random-ROI ensemble recipe (70.8), it take hours to read my code in [scripts_heavy](src/scripts_heavy), and thousands of GPU hours to run. Scripts are ordered by their name. The general step is:
+To reproduce our best random-ROI ensemble recipe (70.8), it take hours to read my code in [scripts_heavy](mem/scripts_heavy), and thousands of GPU hours to run. Scripts are ordered by their name. The general step is:
 
 1. `xvaa` to `xvab` pre-train a RetinaMapper and LayerSelector, keep it freeze on later steps, this boosts training speed 2x, also it's necessary to avoid collapsing during ModelSoup.
 2. `xvba` to `xvbb` train a naive recipe whole brain model, use the model weight to clustering and make model-defined ROIs, this step can be skipped, just remove this atlas from `xvbc`.
-3. `xvbc` is the 1000 GPU hour heavy lift. It run a grid of (9*12)+3=111 models. It also need a total of 1TB storage to store checkpoints. Note that: All of my scripts can run in a distributed setting, the deployment requires `/nfscc` to be a common NFS mounted directory on every node. Nodes communicate through file locks ([cluster_utils.py](src/cluster_utils.py)). You need to run the same script on every node `python xxx.py` or use `do_start_jobs.sh`` to automatically deploy the jobs.
+3. `xvbc` is the 1000 GPU hour heavy lift. It run a grid of (9*12)+3=111 models. It also need a total of 1TB storage to store checkpoints. Note that: All of my scripts can run in a distributed setting, the deployment requires `/nfscc` to be a common NFS mounted directory on every node. Nodes communicate through file locks ([cluster_utils.py](mem/cluster_utils.py)). You need to run the same script on every node `python xxx.py` or use `do_start_jobs.sh`` to automatically deploy the jobs.
 4. `xvda` load stored checkpoints, each model has top10 checkpoints, and make them ModelSoup. If checkpoints are stored in distributed machines, `sync_ckpt.sh` can copy them to one central node.
 5. `xvdb` is the grand finale🎆. It load models from different atlas configuration and save the averaged prediction. The saved prediction can be made into submission by `xvbab`.
 
@@ -191,7 +191,7 @@ python preparedata_nsd.py --nsd_dir /data/nature-scenes-dataset --alg_dir /data/
 python preparedata_nsd.py --nsd_dir /data/nature-scenes-dataset --alg_dir /data/algonauts2023 --output_dir /data/ALG23 --space fship --beta b3
 ```
 
-Script [scripts_paper/xdaa_prevframe.py](src/scripts_light/xdaa_prevframe.py) launch a grid training of 32 frames x 8 subjects, each model of previous frame only take 10~20 min to train. It's possible to switch beta2 ans beta3 if the data is prepared `DATASET.FMRI_SPACE='fship_b2'`
+Script [scripts_paper/xdaa_prevframe.py](mem/scripts_light/xdaa_prevframe.py) launch a grid training of 32 frames x 8 subjects, each model of previous frame only take 10~20 min to train. It's possible to switch beta2 ans beta3 if the data is prepared `DATASET.FMRI_SPACE='fship_b2'`
 
 `xdab` to `xdae` has all the plotting function for memory replay.
 
