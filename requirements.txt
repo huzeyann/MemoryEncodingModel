@@ -222,8 +222,6 @@ timm==0.9.2
 tinycss2==1.2.1
 tokenizers==0.13.2
 tomli==2.0.1
-torch-lazy @ git+https://github.com/simaki/torch-lazy@e3ce23b118bdf36a019c029a67bf5ec84f89a4d7
-torch-tb-profiler==0.4.1
 torchmetrics==0.11.1
 tornado==6.2
 tqdm==4.64.1
