@@ -86,7 +86,8 @@ docker run -d \
   -v /home/huze/Mem/src:/workspace \
   -v /home/huze/data:/data \
   -v /home/huze/data/.cache:/root/.cache \
-  --name sspy
+  --name sspy \
+  huzeeee/afo:latest
 
 docker exec -it sspy zsh
 ```
