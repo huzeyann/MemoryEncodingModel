@@ -8,7 +8,7 @@ Memory Encoding Model (Mem). You can find slides and online video (soon!) on our
 
 > [**Memory Encoding Model**](https://huzeyann.github.io/mem)<br>
 > [Huzheng Yang](https://huzeyann.github.io/), [James Gee*](https://www.med.upenn.edu/apps/faculty/index.php/g5455356/p10656), [Jianbo Shi*](https://www.cis.upenn.edu/~jshi/)
-> <br>University of Pennsylvaniay<br>
+> <br>University of Pennsylvania<br>
 
 We explore a new class of brain encoding model by adding memory-related information as input. We found the non-visual brain is largely predictable using previously seen images. Our Memory Encoding Model (**Mem**) won the Algonauts 2023 visual brain competition even without model ensemble (single model score **66.8**, ensemble score **70.8**). Our ensemble model without memory input (**61.4**) can also stand a 3rd place.
 
