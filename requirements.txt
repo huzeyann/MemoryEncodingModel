@@ -49,7 +49,6 @@ executing==1.2.0
 fast-pytorch-kmeans==0.2.0.1
 fastargs==1.2.0
 fastjsonschema==2.16.2
-ffcv==1.0.2
 filelock==3.9.0
 Flask==2.2.2
 flatten-dict==0.4.2

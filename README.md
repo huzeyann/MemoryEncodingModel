@@ -19,7 +19,7 @@ This repository contains:
 * 😎 simple PyTorch [implementation](mem/models.py) of **Mem**
 * 🤔 complex pipeline to [prepare data](mem/preparedata_nsd.py) from the original NSD repository
 * 🎸 welcoming PyTorch Lightning [training script](mem/plmodels.py)
-* 🥁 [scripts](mem/scripts_light) to achieve 63 and 66 score in 12 and 24h GPU time
+* 🥁 [scripts](mem/scripts_light) to achieve 63 and 66 score in 12 and 24h GPU time (RTX 4090)
 * 😇 [heavy scripts](mem/scripts_heavy) to burn GPU for 1000h to achieve 70 score
 * 📄 [scripts](mem/scripts_paper) to reproduce periodic delayed response, whole brain model
 
@@ -86,7 +86,8 @@ docker run -d \
   -v /home/huze/Mem/src:/workspace \
   -v /home/huze/data:/data \
   -v /home/huze/data/.cache:/root/.cache \
-  --name sspy
+  --name sspy \
+  huzeeee/afo:latest
 
 docker exec -it sspy zsh
 ```
