@@ -48,7 +48,14 @@ git clone https://github.com/huzeyann/MemoryEncodingModel.git
 cd MemoryEncodingModel/mem
 ```
 
-We provide an [`requirements.txt`](requirements.txt) file, it contains everything but `torch`. Install `torch` with conda should make it work smoothly if stars align.
+*[conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html)* - lone the repository and then create and activate the `mem` conda environment using the provided environment definition:
+
+```shell
+conda env create -f conda_env.yaml
+conda activate mem
+```
+
+*[pip]()* - We provide an [`requirements.txt`](requirements.txt) file, it contains everything but `torch`. Install `torch` with conda should make it work smoothly if stars align.
 
 ```bash
 conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
@@ -56,7 +63,7 @@ pip install -r requirements.txt
 ```
 ---
 
-A real challenger use `Docker`🐳. We provide docker image (15G) that contain all the packages.
+*[docker](https://docs.docker.com/get-docker/)* - A real challenger use `Docker`🐳. We provide docker image (15G) that contain all the packages.
 
 ```bash
 docker pull huzeeee/afo:latest
