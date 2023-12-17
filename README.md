@@ -55,15 +55,15 @@ conda env create -f conda_env.yaml
 conda activate mem
 ```
 
-*[pip]()* - We provide an [`requirements.txt`](requirements.txt) file, it contains everything but `torch`. Install `torch` with conda should make it work smoothly if stars align.
+<!-- *[pip]()* - We provide an [`requirements.txt`](requirements.txt) file, it contains everything but `torch`. Install `torch` with conda should make it work smoothly if stars align.
 
 ```bash
 conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
 pip install -r requirements.txt
 ```
----
+--- -->
 
-*[docker](https://docs.docker.com/get-docker/)* - A real challenger use `Docker`🐳. We provide docker image (15G) that contain all the packages.
+*[docker](https://docs.docker.com/get-docker/)* - A real challenger use `Docker`🐳. We provide docker image (15G) that contain all the packages. The code is developed and tested with docker env, please raise a issue if errors in conda env.
 
 ```bash
 docker pull huzeeee/afo:latest
