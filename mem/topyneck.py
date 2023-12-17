@@ -9,8 +9,6 @@ import pytorch_lightning as pl
 import torch
 import torch.nn.functional as F
 
-from torch_lazy.nn import LazyBatchNorm, LazyLayerNorm
-
 # +
 from einops import einsum, rearrange, repeat
 
