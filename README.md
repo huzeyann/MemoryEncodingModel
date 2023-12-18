@@ -48,7 +48,7 @@ git clone https://github.com/huzeyann/MemoryEncodingModel.git
 cd MemoryEncodingModel/mem
 ```
 
-*[conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html)* - lone the repository and then create and activate the `mem` conda environment using the provided environment definition:
+*[conda](https://docs.conda.io/projects/conda/en/latest/user-guide/getting-started.html)* - clone the repository and then create and activate the `mem` conda environment using the provided environment definition:
 
 ```shell
 conda env create -f conda_env.yaml
